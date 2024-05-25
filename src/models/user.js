@@ -3,7 +3,8 @@ const {
   Model
 } = require('sequelize');
 const {SALT}=require('../config/server-config')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const role = require('./role');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -13,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.belongsToMany(models.Role,{through:'User_Roles'})
     }
   }
   User.init({

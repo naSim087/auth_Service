@@ -70,7 +70,25 @@ return result;
       throw error;
     }
   }
-  
+  async isAuthenticated(token){
+    try{
+      const isTokenVerified=this.verifyToken(token);
+
+      if(!isTokenVerified){
+        throw {error:'Invalid token'};
+      }
+      const user=this.userRepository.getById(isTokenVerified.id);
+      if(!user){
+        throw {error:'no user with corresponding token exist'};
+
+      }
+      return user.id;
+    }
+    catch(error){
+      console.log("something went wrong with the token verification");
+      throw {error:"invalid user"};
+    }
+  }  
 
 }
 module.exports=UserService;

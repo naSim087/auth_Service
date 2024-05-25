@@ -89,6 +89,16 @@ return result;
       throw {error:"invalid user"};
     }
   }  
+  async isAdmin(userId){
+    try{
+      const response=await this.userRepository.isAdmin(userId);
+      return response;
+    }
+    catch(error){
+      console.log("something went wrong in the service layer");
+      throw {error:"invalid "};
+    }
+  }
 
 }
 module.exports=UserService;

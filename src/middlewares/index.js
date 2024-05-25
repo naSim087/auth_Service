@@ -1,5 +1,6 @@
-const {validateAuthUser}=require('./auth-request-validator')
+const {validateAuthUser,validateIsAdmin}=require('./auth-request-validator')
 
 module.exports={
-  validator:validateAuthUser
+  validator:validateAuthUser,
+  adminValidator:validateIsAdmin
 }

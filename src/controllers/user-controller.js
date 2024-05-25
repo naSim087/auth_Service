@@ -68,8 +68,30 @@ return res.status(200).json({
     })
   }
 }
+
+const isAdmin=async (req,res)=>{
+  try{
+    const response= await userService.isAdmin(req.body.id);
+    return res.status(200).json({
+      data:response,
+      message:"successfully identification done",
+      err:{},
+      success:true,
+    })
+
+  }
+  catch(error){
+    return res.status(400).json({
+      data:{},
+      message:"unsuccessfully identification done",
+      err:"error occured",
+      success:false,
+    })
+  }
+}
 module.exports={
   create,
   signIn,
   isAuthenticated,
+  isAdmin
 }
